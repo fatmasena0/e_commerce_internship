@@ -1,0 +1,45 @@
+﻿@model e_commerce_internship.Models.Register
+
+<div class="container">
+    <div>
+        <div class="title-left">
+            <h3><a data-toggle="collapse" href="#formRegister" role="button" aria-expanded="true" class="">Üye Ol</a></h3>
+        </div>
+        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "col-sm-6 col-lg-6 mb-3" }))
+        {
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="InputLastname" class="mb-0">Ad</label>
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="InputLastname" class="mb-0">Soyad</label>
+                    @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="InputEmail1" class="mb-0">Kullanıcı Adı</label>
+                    @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="InputPassword1" class="mb-0">E-Mail</label>
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="InputEmail1" class="mb-0">Şifre</label>
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="InputPassword1" class="mb-0">Şifre Tekrar</label>
+                    @Html.EditorFor(model => model.Repassword, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Repassword, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <button type="submit" class="btn hvr-hover">Üye ol</button>
+        }
+    </div>
+</div>

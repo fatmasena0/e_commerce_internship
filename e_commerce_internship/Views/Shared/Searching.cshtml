@@ -1,0 +1,12 @@
+﻿
+@using (Html.BeginForm("Search", "Home", FormMethod.Get, new { @class = "navbar-search" }))
+{
+    <div class="top-search" style="padding: 0; display: block;">
+        <div class="container">
+            <div class="input-group">
+                <input style="color:gainsboro" name="value" class="form-control" placeholder="Ara..." type="text">
+                <button type="submit" style="background-color:black; border:none"> <i style="color:whitesmoke" class="fa fa-search"></i> </button>
+            </div>
+        </div>
+    </div>
+}

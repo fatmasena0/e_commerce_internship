@@ -1,0 +1,129 @@
+﻿@using e_commerce_internship.Entity
+@model IEnumerable<Product>
+
+<div class="shop-box-inner">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-3 col-lg-3 col-sm-12 col-xs-12 sidebar-shop-left">
+                <div class="product-categori">
+                    <div class="search-product">
+                        <form action="#">
+                            <input class="form-control" placeholder="Ara..." type="text">
+                            <button type="submit"> <i class="fa fa-search"></i> </button>
+                        </form>
+                    </div>
+                    <div class="filter-sidebar-left">
+                        <div class="title-left">
+                            <h3>Kategoriler</h3>
+                        </div>
+                        <div class="list-group list-group-collapse list-group-sm list-group-tree" id="list-group-men" data-children=".sub-men">
+                            <div class="list-group-collapse sub-men">
+                                <a href="/Home/Products" class="list-group-item list-group-item-actions"> Tüm Ürünler </a>
+                                <a href="/Home/ProductList/1" class="list-group-item list-group-item-action">
+                                    Tespih
+                                </a>
+                                <div class="list-group">
+                                    <a class="list-group-item list-group-item-action">@Html.RouteLink("99´luk", "Default", new { action = "ProductKindList", id = 1, type = "doksandokuz" })</a>
+                                    <a class="list-group-item list-group-item-action">@Html.RouteLink("33´lük", "Default", new { action = "ProductKindList", id = 1, type = "otuzuc" })</a>
+                                    <a class="list-group-item list-group-item-action">@Html.RouteLink("17`lik", "Default", new { action = "ProductKindList", id = 1, type = "onyedi" })</a>
+                                    @*<a href="/Home/ProductList/1/otuzuc" class="list-group-item list-group-item-action">33´lük</a>
+                                        <a href="/Home/ProductList/1/onyedi" class="list-group-item list-group-item-action">17`lik</a>*@
+                                </div>
+                            </div>
+                            <div class="list-group-collapse sub-men">
+                                <a href="/Home/ProductList/2" class="list-group-item list-group-item-action">
+                                    Takı
+                                </a>
+                                <div class="list-group">
+                                    <a class="list-group-item list-group-item-actions">@Html.RouteLink("Kolye", "Default", new { action = "ProductKindList", id = 2, type = "kolye" })</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-9 col-lg-9 col-sm-12 col-xs-12 shop-content-right">
+                <div class="right-product-box">
+                    <div class="product-item-filter row">
+                        <div class="col-12 col-sm-8 text-center text-sm-left">
+                            <div class="toolbar-sorter-right">
+                                <span>Sort by </span>
+                                <div class="btn-group bootstrap-select show-tick form-control">
+                                    <button type="button" class="btn dropdown-toggle btn-default btn-light" data-toggle="dropdown" role="button" data-id="basic" title="Nothing"><span class="filter-option pull-left">Nothing</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button><div class="dropdown-menu open" role="combobox"><div class="dropdown-menu inner" role="listbox" aria-expanded="false"><a tabindex="0" class="dropdown-item selected" data-original-index="0"><span class="dropdown-item-inner " data-tokens="null" role="option" tabindex="0" aria-disabled="false" aria-selected="true"><span class="text">Nothing</span><span class="fa fa-check check-mark"></span></span></a><a tabindex="0" class="dropdown-item" data-original-index="1"><span class="dropdown-item-inner " data-tokens="null" role="option" tabindex="0" aria-disabled="false" aria-selected="false"><span class="text">Popularity</span><span class="fa fa-check check-mark"></span></span></a><a tabindex="0" class="dropdown-item" data-original-index="2"><span class="dropdown-item-inner " data-tokens="null" role="option" tabindex="0" aria-disabled="false" aria-selected="false"><span class="text">High Price → High Price</span><span class="fa fa-check check-mark"></span></span></a><a tabindex="0" class="dropdown-item" data-original-index="3"><span class="dropdown-item-inner " data-tokens="null" role="option" tabindex="0" aria-disabled="false" aria-selected="false"><span class="text">Low Price → High Price</span><span class="fa fa-check check-mark"></span></span></a><a tabindex="0" class="dropdown-item" data-original-index="4"><span class="dropdown-item-inner " data-tokens="null" role="option" tabindex="0" aria-disabled="false" aria-selected="false"><span class="text">Best Selling</span><span class="fa fa-check check-mark"></span></span></a></div></div>
+                                </div>
+                            </div>
+                            <p>Showing all 4 results</p>
+                        </div>
+                        <div class="col-12 col-sm-4 text-center text-sm-right">
+                            <ul class="nav nav-tabs ml-auto">
+                                <li>
+                                    <a class="nav-link active" href="#grid-view" data-toggle="tab"> <i class="fa fa-th"></i> </a>
+                                </li>
+                                <li>
+                                    <a class="nav-link" href="#list-view" data-toggle="tab"> <i class="fa fa-list-ul"></i> </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="products-box">
+                        <div class="container">
+                            <div class="row special-list">
+                                @foreach (var item in Model)
+                                {
+                                    <div class="col-lg-3 col-md-6 special-grid best-seller">
+                                        <div class="card">
+                                            <img class="card-img" src="~/Content/images/@item.image" alt="Vans" style="object-fit: contain">
+                                            <div class="card-img-overlay d-flex justify-content-end">
+                                                <a href="/Home/ProductDetails/@item.id" class="card-link text-danger like">
+                                                    <i style="font-size:x-large" class="fas fa-eye"></i>
+                                                </a>
+                                            </div>
+                                            <div class="card-body">
+                                                <h4 class="card-title"><strong>@item.name</strong></h4>
+                                                <div class="buy d-flex justify-content-between align-items-center">
+                                                    <div class="price text-success"><h2 class="mt-4">@item.price ₺</h2></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@*<div class="row special-list">
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-3 col-md-6 special-grid best-seller">
+            <div class="products-single fix">
+                <div class="box-img-hover">
+                    <div class="type-lb">
+                        <p class="sale">Satışta</p>
+                    </div>
+                    <img src="~/Content/images/@item.image" class="img-fluid" alt="Image">
+                    <div class="mask-icon">
+                        <ul>
+                            <li><a href="/Home/ProductDetails/@item.id" data-toggle="tooltip" data-placement="right" title="Göster"><i class="fas fa-eye"></i></a></li>
+                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Favorilere Ekle"><i class="far fa-heart"></i></a></li>
+                        </ul>
+                        <a class="cart" href="#">Sepete Ekle</a>
+                    </div>
+                </div>
+                <div class="why-text">
+                    <h4>@item.name</h4>
+                    <h5>@item.price ₺</h5>
+                </div>
+            </div>
+        </div>
+    }*@
+</div>

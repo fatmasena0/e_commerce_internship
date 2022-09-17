@@ -1,0 +1,113 @@
+﻿@using e_commerce_internship.Entity
+@model IEnumerable<Product>
+
+
+<div id="slides-shop" class="cover-slides" style="height: 420px;">
+    <ul class="slides-container">
+        <li class="text-left">
+            <img src="/thewayshop/images/slide1.png" alt="">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="m-b-20"><strong>Lületaşı <br> Tesbihler</strong></h1>
+                        <p class="m-b-40">Her Biri Özel Olarak Tasarlanmış Ürünler <br> İNDİRİMLİ FİYATLARLA</p>
+                        <p><a class="btn hvr-hover" href="#">Alışverişe Başla</a></p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li class="text-center">
+            <img src="/thewayshop/images/slide1.png" alt="">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="m-b-20"><strong>Lületaşı <br> Tesbihler</strong></h1>
+                        <p class="m-b-40">Her Biri Özel Olarak Tasarlanmış Ürünler <br> İNDİRİMLİ FİYATLARLA</p>
+                        <p><a class="btn hvr-hover" href="#">Alışverişe Başla</a></p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li class="text-right">
+            <img src="/thewayshop/images/slide1.png" alt="">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="m-b-20"><strong>Lületaşı <br> Tesbihler</strong></h1>
+                        <p class="m-b-40">Her Biri Özel Olarak Tasarlanmış Ürünler <br> İNDİRİMLİ FİYATLARLA</p>
+                        <p><a class="btn hvr-hover" href="#">Alışverişe Başla</a></p>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+    <div class="slides-navigation">
+        <a href="#" class="next" style="background: no-repeat"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+        <a href="#" class="prev" style="background: no-repeat"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+    </div>
+</div>
+<!-- Start Categories  -->
+<div class="products-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="title-all text-center">
+                    <h1>Çok Satanlar</h1>
+                </div>
+            </div>
+        </div>
+
+        @*<div class="row special-list">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-3 col-md-6 special-grid best-seller">
+                    <div class="products-single fix">
+                        <div class="box-img-hover">
+                            <div class="type-lb">
+                                <p class="sale">Satışta</p>
+                            </div>
+                            <img style="width:210px; height:210px" src="~/Content/images/@item.image" class="img-fluid" alt="Image">
+                            <div class="mask-icon">
+                                <ul>
+                                    <li><a href="/Home/ProductDetails/@item.id" data-toggle="tooltip" data-placement="right" title="Göster"><i class="fas fa-eye"></i></a></li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Favorilere Ekle"><i class="far fa-heart"></i></a></li>
+                                </ul>
+                                <a class="cart" href="#">Sepete Ekle</a>
+                            </div>
+                        </div>
+                        <div class="why-text">
+                            <h4>@item.name</h4>
+                            <h5>@item.price ₺</h5>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>*@
+
+        <div class="row special-list">
+            @foreach (var item in Model)
+            {
+                    <div class="col-lg-3 col-md-6 special-grid best-seller" style="position:fixed">
+                        <div class="card">
+                            <img class="card-img" src="~/Content/images/@item.image" alt="Vans" style="object-fit: contain">
+                            <div class="card-img-overlay d-flex justify-content-end">
+                                <a href="/Home/ProductDetails/@item.id" class="card-link text-danger like">
+                                    <i style="font-size:x-large" class="fas fa-eye"></i>
+                                </a>
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title"><strong>@item.name</strong></h4>
+                                <div class="buy d-flex justify-content-between align-items-center">
+                                    <div class="price text-success"><h2 class="mt-4">@item.price ₺</h2></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    }
+            </div>
+            </div>
+</div>
+
+<!-- End Categories -->
+<!-- Start Products  -->
+<!-- End Products  -->

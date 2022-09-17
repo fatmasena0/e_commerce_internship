@@ -1,0 +1,83 @@
+﻿@model e_commerce_internship.Models.OrderDetails
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="table-main table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Sipariş Id</th>
+                            <th>Sipariş Numarası</th>
+                            <th>Sipariş Tarihi</th>
+                            <th>Toplam Tutar</th>
+                            <th>Sipariş Durumu</th>
+                            <th>Teslimat Adresi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>@Model.OrderId</td>
+                            <td>@Model.OrderNumber</td>
+                            <td>@Model.OrderDate</td>
+                            <td>@Model.TotalPrice ₺</td>
+                            <td>
+                                @if (Model.OrderState == e_commerce_internship.Entity.OrderState.Bekleniyor)
+                                {
+                                    <a class="btn btn-danger">Sipariş onayı bekleniyor.</a>
+                                }
+                                else if (Model.OrderState == e_commerce_internship.Entity.OrderState.Onaylandı)
+                                {
+                                    <a class="btn btn-success">Sipariş onaylandı.</a>
+                                }
+                                else if (Model.OrderState == e_commerce_internship.Entity.OrderState.Paketlendi)
+                                {
+                                    <a class="btn btn-info">Sipariş paketlendi.</a>
+                                }
+                                else if (Model.OrderState == e_commerce_internship.Entity.OrderState.Kargolandı)
+                                {
+                                    <a class="btn btn-primary">Sipariş kargoya teslim edildi.</a>
+                                }
+                            </td>
+                            <td>
+                                @Model.Address <br />
+                                @Model.Sehir <br />
+                                @Model.Semt <br />
+                                @Model.PostaKodu <br />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Ürün Fotoğrafı</th>
+                            <th>Ürün Adı</th>
+                            <th>Toplam Tutar</th>
+                            <th>Adet</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.OrderLines)
+                        {
+                        <tr>
+                            <td><img src="~/Content/images/@item.Image" height="75" width="75" /></td>
+                            <td>@item.ProductName</td>
+                            <td>@item.Price ₺</td>
+                            <td>@item.Quantity</td>
+                            <td><a href="/Home/ProductDetails/@item.ProductId" class="btn btn-success" target="_blank">Ürün Detay</a></td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+

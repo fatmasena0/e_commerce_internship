@@ -1,0 +1,67 @@
+﻿@model IEnumerable<e_commerce_internship.Entity.Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+    <table class="table">
+        <tr>
+            <th>
+                Ürün İsmi
+            </th>
+            <th>
+                Kategori İsmi
+            </th>
+            <th>
+                Tür
+            </th>
+            <th>
+                Renk
+            </th>
+            <th>
+                Fiyat
+            </th>
+            <th>
+                Stok
+            </th>
+            <th>
+                Popüler
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.category.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.kind)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.color)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.stock)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.isFeatured)
+                </td>
+                <td>
+                    <a class="btn btn-primary" href="@Url.Action("Edit", new { id = item.id})"> Düzenle </a>
+                    <a class="btn btn-danger" href="@Url.Action("Delete", new { id = item.id})"> Sil </a>
+                </td>
+            </tr>
+        }
+
+    </table>
+        <a class="btn btn-primary btn-block" href="/Product/Create">Ekle</a>

@@ -1,0 +1,76 @@
+﻿<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+<style>
+    .dropbtn {
+        background-color: #d33b33;
+        color: white;
+        padding: 10px;
+        margin-top:19px;
+        font-size: 16px;
+        border: none;
+    }
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+            .dropdown-content a:hover {
+                background-color: #ddd;
+            }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .dropdown:hover .dropbtn {
+        background-color: #d33b33;
+    }
+</style>
+<div class="dropdown">
+    <button class="dropbtn"><i class='fas fa-user-alt'></i>Hesap</button>
+    @if (Request.IsAuthenticated) //eğer kullanıcı sisteme giriş yapmışsa
+    {
+        if (this.User.IsInRole("admin")) //eğer kullanıcı admin ise
+        {
+    <div class="dropdown-content">
+        <a href="/Product/Index" target="_blank">Admin Paneli</a>
+        <a href="/Account/Index">Siparislerim</a>
+        <a href="/Account/UserProfile">Profil Bilgileri</a>
+        <a href="/Account/Logout">Çıkış</a>
+    </div>
+        }
+        else
+        {
+            <div class="dropdown-content">
+                <a href="/Account/UserProfile">Profil</a>
+                <a href="/Account/Index">@User.Identity.Name</a>
+                <a href="/Account/Logout">Çıkış</a>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="dropdown-content">
+            <a href="/Account/Login">Giriş yap</a>
+            <a href="/Account/Register">Üye ol</a>
+        </div>
+    }
+
+
+</div>

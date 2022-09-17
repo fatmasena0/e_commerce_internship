@@ -1,0 +1,53 @@
+﻿@using e_commerce_internship.Models
+@model IEnumerable<UserOrder>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="all-title-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>Sepet</h2>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/Home/Index">Anasayfa</a></li>
+                    <li class="breadcrumb-item active">Sepet</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="table-main table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Sipariş Numarası</th>
+                                <th>Sipariş Tarihi</th>
+                                <th>Toplam Tutar</th>
+                                <th>Sipariş Durumu</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                <td>@item.OrderNumber</td>
+                                <td>@item.OrderTime</td>
+                                <td>@item.TotalPrice ₺</td>
+                                <td>@item.OrderState</td>
+                                <td>@Html.ActionLink("Sipariş Detay", "Details", new { id=item.Id}, new { @class = "btn btn-primary" })</td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>              
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,25 @@
+﻿@using e_commerce_internship.Identity
+@model IEnumerable<ApplicationUser>
+@{
+    ViewBag.Title = "UserList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h3 class="box-header">Kullanıcı Listesi Siparişler</h3>
+<table class="table">
+    <tr>
+        <th>Ad</th>
+        <th>Soyad</th>
+        <th>Kullanıcı Adı</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.Surname</td>
+            <td>@item.UserName</td>
+        </tr>
+    }
+
+</table>

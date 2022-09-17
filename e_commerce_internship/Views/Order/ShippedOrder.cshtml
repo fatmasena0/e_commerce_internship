@@ -1,0 +1,54 @@
+﻿@using e_commerce_internship.Entity
+@model IEnumerable<Order>
+@{
+    ViewBag.Title = "ShippedOrder";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h3 class="box-header">Kargoya Verilen Siparişler</h3>
+<table class="table">
+    <tr>
+        <th>
+            Sipariş Id
+        </th>
+        <th>
+            Sipariş Numarası
+        </th>
+        <th>
+            Sipariş Tarihi
+        </th>
+        <th>
+            Sipariş Durumu
+        </th>
+        <th>
+            Toplam Fiyat
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderState)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalPrice)
+            </td>
+            <td>
+                <a class="btn btn-primary" href="@Url.Action("Details", new { id = item.Id})"> Sipariş Detay </a>
+            </td>
+        </tr>
+    }
+
+</table>
+

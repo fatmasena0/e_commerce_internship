@@ -1,0 +1,107 @@
+﻿@model e_commerce_internship.Models.Cart
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="all-title-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>Sepet</h2>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/Home/Index">Anasayfa</a></li>
+                    <li class="breadcrumb-item active">Sepet</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="table-main table-responsive">
+                @if (Model.CartLines.Count > 0)
+                {
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Fotoğraf</th>
+                                <th>Ürün Adı</th>
+                                <th>Fiyat</th>
+                                <th>Adet</th>
+                                <th>Toplam Tutar</th>
+                                <th>Sil</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.CartLines)
+                            {
+                                <tr>
+                                    <td class="thumbnail-img">
+                                        <a href="#">
+                                            <img class="img-fluid" src="~/Content/images/@item.Product.image" alt="">
+                                        </a>
+                                    </td>
+                                    <td class="name-pr">
+                                        <a href="#">
+                                            @item.Product.name
+                                        </a>
+                                    </td>
+                                    <td class="price-pr">
+                                        <p>@item.Product.price.ToString("c")</p>
+                                    </td>
+                                    <td class="quantity-box"><input type="number" size="4" value=@item.Quantity min="0" step="1" class="c-input-text qty text"></td>
+                                    <td class="total-pr">
+                                        <p>@((item.Quantity * item.Product.price).ToString("c"))</p>
+                                    </td>
+                                    <td class="remove-pr">
+                                        @using (Html.BeginForm("RemoveFromCart", "Cart"))
+                                        {
+                                            @Html.Hidden("Id", item.Product.id)
+                                            <button type="submit" class="btn btn-danger"><span class="icon-remove"></span>Sil</button>
+                                        }
+                                    </td>
+                                </tr>
+
+                            }
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th>Toplam Tutar: </th>
+                                <th>@Model.TotalPrice().ToString("c")</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <div class="alert alert-warning">
+                        <p>Sepette ürün bulunmamaktadır.</p>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+    <div class="row my-5">
+        <div class="col-lg-6 col-sm-6">
+            <div class="update-box">
+                <a href="/Home/Index" class="ml-auto btn hvr-hover">Alışverişe Devam Et</a>
+            </div>
+        </div>
+        @if (Model.CartLines.Count > 0)
+        {
+            <div class="col-lg-6 col-sm-6">
+                <div class="update-box">
+                    <a href="/Cart/Checkout" class="ml-auto btn hvr-hover">Şipariş Ver</a>
+                </div>
+            </div>
+        }
+        </div>
+
+</div>
+
